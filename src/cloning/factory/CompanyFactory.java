@@ -21,7 +21,7 @@ public class CompanyFactory {
     company.setCompanyId(1L);
     company.setCompanyName("MyCompany");
 
-    List<Department> departments = IntStream.range(1, 5).mapToObj(i -> createDepartment()).collect(Collectors.toList());
+    List<Department> departments = IntStream.rangeClosed(1, 10).mapToObj(i -> createDepartment()).collect(Collectors.toList());
     company.setDepartments(departments);
 
     return company;
@@ -33,7 +33,7 @@ public class CompanyFactory {
     department.setDepartmentName(generateRandomString());
     department.setDepartmentCode(generateRandomString());
 
-    List<Employee> employees = IntStream.range(1, 1000).mapToObj(i -> createEmployee()).collect(Collectors.toList());
+    List<Employee> employees = IntStream.rangeClosed(1, 1000).mapToObj(i -> createEmployee()).collect(Collectors.toList());
     department.setEmployees(employees);
 
     return department;
@@ -52,7 +52,7 @@ public class CompanyFactory {
     employee.setSalary(random.nextInt() * 1000);
     employee.setJoiningDate(LocalDate.of(random.nextInt(2020, 2022), random.nextInt(1, 12), random.nextInt(1, 25)));
 
-    List<Task> tasks = IntStream.range(1, 100).mapToObj(i -> createTask()).collect(Collectors.toList());
+    List<Task> tasks = IntStream.rangeClosed(1, 100).mapToObj(i -> createTask()).collect(Collectors.toList());
     employee.setTasksCompleted(tasks);
 
     return employee;

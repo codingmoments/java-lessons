@@ -10,18 +10,21 @@ import cloning.util.Cloner;
 public class SpeedTest {
 
   public static void main(String[] args) throws Exception {
-    Company company = CompanyFactory.createCompany();
-
     int totalTimeUsingSerialization = 0;
     int totalTimeUsingReflection = 0;
     int totalTimeUsingCopyConstructor = 0;
 
-    for (int i = 1; i <= 5; i++) {
+    Instant startInstant = Instant.now();
+    Company company = CompanyFactory.createCompany();
+    Instant endInstant = Instant.now();
+    System.out.printf("%s : %5d\n", "Time required to create object", Duration.between(startInstant, endInstant).toMillis());
+
+    for (int i = 1; i <= 10; i++) {
       System.out.printf("Iteration #%d\n", i);
-      
-      Instant startInstant = Instant.now();
+
+      startInstant = Instant.now();
       Company companyCopiedUsingSerialization = Cloner.deepCopyUsingSerialization(company);
-      Instant endInstant = Instant.now();
+      endInstant = Instant.now();
       System.out.printf("%-25s : Equality check = %s | Time taken (ms) = %5d\n", "Using serialization", company.equals(companyCopiedUsingSerialization),
         Duration.between(startInstant, endInstant).toMillis());
       totalTimeUsingSerialization += Duration.between(startInstant, endInstant).toMillis();
