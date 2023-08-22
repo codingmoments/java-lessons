@@ -19,7 +19,9 @@ public class SpeedTest {
     Instant endInstant = Instant.now();
     System.out.printf("%s : %5d\n", "Time required to create object", Duration.between(startInstant, endInstant).toMillis());
 
-    for (int i = 1; i <= 10; i++) {
+    final int iterations = 1;
+
+    for (int i = 1; i <= iterations; i++) {
       System.out.printf("Iteration #%d\n", i);
 
       startInstant = Instant.now();
@@ -46,8 +48,8 @@ public class SpeedTest {
 
     System.out.println("****************************");
     System.out.printf("%-20s :\n", "Average Timings (ms)");
-    System.out.printf("%-20s : %5d\n", "Serialization", totalTimeUsingSerialization / 5);
-    System.out.printf("%-20s : %5d\n", "Reflection", totalTimeUsingReflection / 5);
-    System.out.printf("%-20s : %5d\n", "Copy constructor", totalTimeUsingCopyConstructor / 5);
+    System.out.printf("%-20s : %5d\n", "Serialization", totalTimeUsingSerialization / iterations);
+    System.out.printf("%-20s : %5d\n", "Reflection", totalTimeUsingReflection / iterations);
+    System.out.printf("%-20s : %5d\n", "Copy constructor", totalTimeUsingCopyConstructor / iterations);
   }
 }
