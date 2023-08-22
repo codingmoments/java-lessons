@@ -65,10 +65,10 @@ public class Task implements Serializable {
     this.completedDate = completedDate;
   }
 
-  public boolean deepEquals(Object obj) {
-    // Unlike equals(), if both references point to same object, we return false.
+  @Override
+  public boolean equals(Object obj) {
     if (this == obj)
-      return false;
+      return true;
     if (obj == null)
       return false;
     if (getClass() != obj.getClass())

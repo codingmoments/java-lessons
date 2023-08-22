@@ -121,18 +121,18 @@ public class Employee implements Serializable {
     return Objects.hash(address, birthDate, departmentId, employeeId, firstName, joiningDate, lastName, salary, tasksCompleted);
   }
 
-  public boolean deepEquals(Object obj) {
-    // Unlike equals(), if both references point to same object, we return false.
+  @Override
+  public boolean equals(Object obj) {
     if (this == obj)
-      return false;
+      return true;
     if (obj == null)
       return false;
     if (getClass() != obj.getClass())
       return false;
     Employee other = (Employee) obj;
-    return address.deepEquals(other.address) && Objects.equals(birthDate, other.birthDate) && Objects.equals(departmentId, other.departmentId) && Objects.equals(employeeId, other.employeeId)
+    return Objects.equals(address, other.address) && Objects.equals(birthDate, other.birthDate) && Objects.equals(departmentId, other.departmentId) && Objects.equals(employeeId, other.employeeId)
       && Objects.equals(firstName, other.firstName) && Objects.equals(joiningDate, other.joiningDate) && Objects.equals(lastName, other.lastName) && Objects.equals(salary, other.salary)
-      && ListUtil.areListsDeepEqual(tasksCompleted, other.tasksCompleted);
+      && ListUtil.areListsEqual(tasksCompleted, other.tasksCompleted);
   }
 
 }

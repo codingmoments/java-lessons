@@ -61,17 +61,17 @@ public class Department implements Serializable {
     this.employees = employees;
   }
 
-  public boolean deepEquals(Object obj) {
-    // Unlike equals(), if both references point to same object, we return false.
+  @Override
+  public boolean equals(Object obj) {
     if (this == obj)
-      return false;
+      return true;
     if (obj == null)
       return false;
     if (getClass() != obj.getClass())
       return false;
     Department other = (Department) obj;
     return Objects.equals(departmentCode, other.departmentCode) && Objects.equals(departmentId, other.departmentId) && Objects.equals(departmentName, other.departmentName)
-      && ListUtil.areListsDeepEqual(employees, other.employees);
+      && ListUtil.areListsEqual(employees, other.employees);
   }
 
 }

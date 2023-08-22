@@ -50,16 +50,16 @@ public class Company implements Serializable {
     this.departments = departments;
   }
 
-  public boolean deepEquals(Object obj) {
-    // Unlike equals(), if both references point to same object, we return false.
+  @Override
+  public boolean equals(Object obj) {
     if (this == obj)
-      return false;
+      return true;
     if (obj == null)
       return false;
     if (getClass() != obj.getClass())
       return false;
     Company other = (Company) obj;
-    return Objects.equals(companyId, other.companyId) && Objects.equals(companyName, other.companyName) && ListUtil.areListsDeepEqual(departments, other.departments);
+    return Objects.equals(companyId, other.companyId) && Objects.equals(companyName, other.companyName) && ListUtil.areListsEqual(departments, other.departments);
   }
 
 }
