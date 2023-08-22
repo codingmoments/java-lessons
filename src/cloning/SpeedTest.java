@@ -25,21 +25,21 @@ public class SpeedTest {
       startInstant = Instant.now();
       Company companyCopiedUsingSerialization = Cloner.deepCopyUsingSerialization(company);
       endInstant = Instant.now();
-      System.out.printf("%-25s : Equality check = %s | Time taken (ms) = %5d\n", "Using serialization", company.equals(companyCopiedUsingSerialization),
+      System.out.printf("%-25s : Equality check = %s | Time taken (ms) = %5d\n", "Using serialization", company.deepEquals(companyCopiedUsingSerialization),
         Duration.between(startInstant, endInstant).toMillis());
       totalTimeUsingSerialization += Duration.between(startInstant, endInstant).toMillis();
 
       startInstant = Instant.now();
       Company companyCopiedUsingReflection = Cloner.deepCopyUsingReflection(company);
       endInstant = Instant.now();
-      System.out.printf("%-25s : Equality check = %s | Time taken (ms) = %5d\n", "Using reflection", company.equals(companyCopiedUsingReflection),
+      System.out.printf("%-25s : Equality check = %s | Time taken (ms) = %5d\n", "Using reflection", company.deepEquals(companyCopiedUsingReflection),
         Duration.between(startInstant, endInstant).toMillis());
       totalTimeUsingReflection += Duration.between(startInstant, endInstant).toMillis();
 
       startInstant = Instant.now();
       Company companyCopiedUsingCopyConstructor = new Company(company);
       endInstant = Instant.now();
-      System.out.printf("%-25s : Equality check = %s | Time taken (ms) = %5d\n", "Using copy constructor", company.equals(companyCopiedUsingCopyConstructor),
+      System.out.printf("%-25s : Equality check = %s | Time taken (ms) = %5d\n", "Using copy constructor", company.deepEquals(companyCopiedUsingCopyConstructor),
         Duration.between(startInstant, endInstant).toMillis());
       totalTimeUsingCopyConstructor += Duration.between(startInstant, endInstant).toMillis();
     }

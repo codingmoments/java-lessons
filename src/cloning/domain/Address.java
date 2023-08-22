@@ -94,10 +94,10 @@ public class Address implements Serializable {
     this.country = country;
   }
 
-  @Override
-  public boolean equals(Object obj) {
+  public boolean deepEquals(Object obj) {
+    // Unlike equals(), if both references point to same object, we return false.
     if (this == obj)
-      return true;
+      return false;
     if (obj == null)
       return false;
     if (getClass() != obj.getClass())
