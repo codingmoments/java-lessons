@@ -16,30 +16,30 @@ public class CompanyFactory {
 
   private static Random random = new Random();
 
-  public static Company createCompany() {
+  public static Company createCompany(int departmentCount, int employeesPerDepartment, int tasksPerEmployee) {
     Company company = new Company();
     company.setCompanyId(1L);
     company.setCompanyName("MyCompany");
 
-    List<Department> departments = IntStream.rangeClosed(1, 5).mapToObj(i -> createDepartment()).collect(Collectors.toList());
+    List<Department> departments = IntStream.rangeClosed(1, departmentCount).mapToObj(i -> createDepartment(employeesPerDepartment, tasksPerEmployee)).collect(Collectors.toList());
     company.setDepartments(departments);
 
     return company;
   }
 
-  public static Department createDepartment() {
+  public static Department createDepartment(int employeesPerDepartment, int tasksPerEmployee) {
     Department department = new Department();
     department.setDepartmentId(random.nextLong());
     department.setDepartmentName(generateRandomString());
     department.setDepartmentCode(generateRandomString());
 
-    List<Employee> employees = IntStream.rangeClosed(1, 500).mapToObj(i -> createEmployee()).collect(Collectors.toList());
+    List<Employee> employees = IntStream.rangeClosed(1, employeesPerDepartment).mapToObj(i -> createEmployee(tasksPerEmployee)).collect(Collectors.toList());
     department.setEmployees(employees);
 
     return department;
   }
 
-  public static Employee createEmployee() {
+  public static Employee createEmployee(int tasksPerEmployee) {
     Employee employee = new Employee();
     employee.setEmployeeId(random.nextLong());
     employee.setFirstName(generateRandomString());
@@ -52,7 +52,7 @@ public class CompanyFactory {
     employee.setSalary(random.nextInt() * 1000);
     employee.setJoiningDate(LocalDate.of(random.nextInt(2020, 2022), random.nextInt(1, 12), random.nextInt(1, 25)));
 
-    List<Task> tasks = IntStream.rangeClosed(1, 200).mapToObj(i -> createTask()).collect(Collectors.toList());
+    List<Task> tasks = IntStream.rangeClosed(1, tasksPerEmployee).mapToObj(i -> createTask()).collect(Collectors.toList());
     employee.setTasksCompleted(tasks);
 
     return employee;

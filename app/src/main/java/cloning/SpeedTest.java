@@ -15,7 +15,7 @@ public class SpeedTest {
     int totalTimeUsingCopyConstructor = 0;
 
     Instant startInstant = Instant.now();
-    Company company = CompanyFactory.createCompany();
+    Company company = CompanyFactory.createCompany(5, 500, 200);
     Instant endInstant = Instant.now();
     System.out.printf("%s : %5d\n", "Time required to create object", Duration.between(startInstant, endInstant).toMillis());
 

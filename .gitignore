@@ -4,3 +4,4 @@ bin/
 .gradle/
 app/build/
 .gitattributes
+.settings/
